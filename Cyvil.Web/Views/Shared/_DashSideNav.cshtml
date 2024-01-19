@@ -1,0 +1,62 @@
+<div class="sidebar active">
+    <div class="logo-details">
+        <i class="bx bxs-book-bookmark"></i>
+        <span class="logo_name d-none">Cyvil</span>
+    </div>
+    <ul class="nav-links" style="padding-left: 0;">
+        <li>
+            <a asp-area="Administrators" asp-controller="Home" asp-action="Index" class="active">
+                <i class="bx bxs-dashboard"></i>
+                <span class="links_name d-none">Dashboard</span>
+            </a>
+        </li>
+        <li>
+            <a asp-area="Administrators" asp-controller="Roles" asp-action="Index">
+                <i class="bx bx-shield-quarter"></i>
+                <span class="links_name d-none">Roles</span>
+            </a>
+        </li>
+        <li>
+            <a asp-area="Administrators" asp-controller="Users" asp-action="Index">
+                <i class="bx bxs-group"></i>
+                <span class="links_name d-none">Users</span>
+            </a>
+        </li>
+        <li>
+            <a asp-area="Administrators" asp-controller="Causes" asp-action="Index">
+                <i class="bx bxs-donate-heart"></i>
+                <span class="links_name d-none">Causes</span>
+            </a>
+        </li>
+            <li>
+            <a asp-area="Administrators" asp-controller="Values" asp-action="Index">
+                <i class="bx bxs-heart"></i>
+                <span class="links_name d-none">Values</span>
+            </a>
+        </li>
+        <li>
+            <a href="">
+                <i class="bx bxs-message-alt-dots"></i>
+                <span class="links_name d-none">Messages</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="bx bxs-pie-chart-alt-2"></i>
+                <span class="links_name d-none">Analytics</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="bx bx-cog"></i>
+                <span class="links_name d-none">Setting</span>
+            </a>
+        </li>
+        <li class="log_out">
+            <a asp-area="Identity" asp-controller="Account" asp-action="Logout">
+                <i class="bx bx-log-out"></i>
+                <span class="links_name d-none">Log out</span>
+            </a>
+        </li>
+    </ul>
+</div>

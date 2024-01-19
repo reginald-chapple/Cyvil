@@ -1,0 +1,42 @@
+@model Cause
+
+@{
+    ViewData["Title"] = "Create Cause";
+}
+
+@section Stylesheets {
+<!-- <link href="~/vendors/flatpickr/flatpickr.min.css" rel="stylesheet"> -->
+}
+
+<div class="container mb-5">
+    <div class="row">
+        <div class="col">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="mb-3">
+                    <label asp-for="Name" class="control-label"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>   
+
+    <partial name="_Footer" />
+</div>
+
+@section VendorScripts {
+<!-- <script src="~/vendors/echarts/echarts.min.js"></script> -->
+}
+
+@section CustomScripts {
+<!-- <script src="~/assets/js/project-details.js"></script> -->
+<script src="~/js/site.js"></script>
+<script>
+    $(document).ready(function () {
+    });
+</script>
+}
