@@ -19,7 +19,10 @@ public class ApplicationUser : IdentityUser<string>
     [PhotoExtension]
     public IFormFile? ImageUpload { get; set; }
 
+    public bool CanCreateCampaign { get; set; } = true;
+
     public virtual ICollection<ApplicationUserRole> UserRoles { get; set; } = [];
     public virtual ICollection<UserNotification> Notifications { get; set; } = [];
     public virtual ICollection<ChatUser> Chats { get; set; } = [];
+    public virtual ICollection<CampaignUser> Campaigns { get; set; } = [];
 }

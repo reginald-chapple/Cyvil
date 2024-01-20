@@ -22,6 +22,7 @@ namespace Cyvil.Web.Data
         public DbSet<Cause> Causes { get; set; }
         public DbSet<Value> Values { get; set; }
         public DbSet<Campaign> Campaigns { get; set; }
+        public DbSet<CampaignUser> CampaignUsers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

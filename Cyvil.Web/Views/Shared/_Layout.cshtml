@@ -22,7 +22,7 @@
     <link href="~/lib/bootstrap/assets/css/color-modes.css" type="text/css" rel="stylesheet">
     <link href="~/lib/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet">
     <link href="~/css/site.css" type="text/css" rel="stylesheet">
-    @await RenderSectionAsync("Styles", required: false)
+    @await RenderSectionAsync("StyleTag", required: false)
 </head>
 <body>
     <div class="container-fluid">
@@ -38,7 +38,7 @@
             <div class="col-lg-4 mt-4 d-none d-lg-block">
                 <div class="position-sticky" style="top: 0px">
                     <div>
-                        <input type="text" class="form-control" placeholder="Search Twitter" />
+                        <input type="text" class="form-control" placeholder="Search" />
                     </div>
 
                     @await RenderSectionAsync("SidebarWidgets", required: false)

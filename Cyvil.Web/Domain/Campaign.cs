@@ -41,6 +41,8 @@ public class Campaign : Entity
     // public long CityId { get; set; }
     // public virtual City? City { get; set; }
 
+    public virtual ICollection<CampaignUser> Users { get; set; } = [];
+
     public int DaysPassed()
     {
         if (PublishDate.HasValue)

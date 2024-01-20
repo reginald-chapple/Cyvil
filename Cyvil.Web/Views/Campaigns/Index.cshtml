@@ -1,0 +1,55 @@
+@{
+    ViewData["Title"] = "Campaigns";
+}
+
+<div class="row align-items-center mt-3">
+    <div class="col">
+        <h4>Campaigns</h4>
+    </div>
+    <div class="col text-end">
+        <i class="fa-solid fa-bell"></i>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <ul class="nav nav-underline nav-fill" id="myTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="home-tab" data-bs-toggle="tab" href="#tab-home" role="tab" aria-controls="tab-home" aria-selected="true">
+                    My Campaigns
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#tab-profile" role="tab" aria-controls="tab-profile" aria-selected="false">
+                    Explore
+                </a>
+            </li>
+        </ul>
+        <div class="tab-content mt-3" id="myTabContent">
+            <div class="tab-pane fade show active" id="tab-home" role="tabpanel" aria-labelledby="home-tab">
+                <partial name="Campaigns/_MyCampaigns" />
+            </div>
+            <div class="tab-pane fade" id="tab-profile" role="tabpanel" aria-labelledby="profile-tab">
+                Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic.
+            </div>
+        </div>
+    </div>
+</div>
+
+@section SidebarWidgets {
+    <partial name="Widgets/_NewsWidget" />
+}
+
+<vc:save-campaign></vc:save-campaign>
+
+@section JavaScripts {
+    <script src="~/js/campaign.js"></script>
+}
+
+@section ScriptTag {
+    <script>
+        $(document).ready(function () {
+            saveCampaign();
+        });
+    </script>
+}

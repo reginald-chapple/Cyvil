@@ -51,6 +51,9 @@ namespace Cyvil.Web.Data.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("INTEGER");
 
+                    b.Property<bool>("CanCreateCampaign")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("TEXT");
@@ -195,6 +198,67 @@ namespace Cyvil.Web.Data.Migrations
                     b.HasIndex("CauseId");
 
                     b.ToTable("Campaigns");
+                });
+
+            modelBuilder.Entity("Cyvil.Web.Domain.CampaignUser", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<long>("CampaignId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("CanCreateEvent")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("CanCreateOpportunity")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("CanDeleteCampaign")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("CanDeleteEvent")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("CanDeleteOpportunity")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("CanEditCampaign")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("CanEditEvent")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("CanEditOpportunity")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("CanRemoveManager")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("CanRemoveVolunteer")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Role")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("Updated")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CampaignId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("CampaignUsers");
                 });
 
             modelBuilder.Entity("Cyvil.Web.Domain.Cause", b =>
@@ -499,6 +563,25 @@ namespace Cyvil.Web.Data.Migrations
                     b.Navigation("Cause");
                 });
 
+            modelBuilder.Entity("Cyvil.Web.Domain.CampaignUser", b =>
+                {
+                    b.HasOne("Cyvil.Web.Domain.Campaign", "Campaign")
+                        .WithMany("Users")
+                        .HasForeignKey("CampaignId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Cyvil.Web.Domain.ApplicationUser", "User")
+                        .WithMany("Campaigns")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Campaign");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Cyvil.Web.Domain.Cause", b =>
                 {
                     b.HasOne("Cyvil.Web.Domain.Cause", "Parent")
@@ -600,11 +683,18 @@ namespace Cyvil.Web.Data.Migrations
 
             modelBuilder.Entity("Cyvil.Web.Domain.ApplicationUser", b =>
                 {
+                    b.Navigation("Campaigns");
+
                     b.Navigation("Chats");
 
                     b.Navigation("Notifications");
 
                     b.Navigation("UserRoles");
+                });
+
+            modelBuilder.Entity("Cyvil.Web.Domain.Campaign", b =>
+                {
+                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("Cyvil.Web.Domain.Cause", b =>
