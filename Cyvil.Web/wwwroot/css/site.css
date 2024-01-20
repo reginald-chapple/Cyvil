@@ -1,5 +1,13 @@
-body {
-  min-height: 75rem;
-  padding-top: 4.5rem;
+.app-nav {
+  height: 100vh;
+  top: 0px;
 }
 
+.user-avatar {
+  bottom: 1.3rem;
+}
+
+.sidebar-widgetbox {
+  background-color: #efefef;
+  border-radius: 1.3rem;
+}
