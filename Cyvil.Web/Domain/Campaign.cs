@@ -30,8 +30,12 @@ public class Campaign : Entity
 
     public ProgressStatus Status { get; set; } = ProgressStatus.Draft;
 
+    public bool IsDeleted { get; set; } = false;
+
+    public DateTime? DeleteDate { get; set; }
+
     [DataType(DataType.Date)]
-    public DateTime? Deadline { get; set; }
+    public DateOnly? Deadline { get; set; }
 
     public DateTime? PublishDate { get; set; }
 
@@ -42,6 +46,11 @@ public class Campaign : Entity
     // public virtual City? City { get; set; }
 
     public virtual ICollection<CampaignUser> Users { get; set; } = [];
+    public virtual ICollection<Donation> Donations { get; set; } = [];
+    public virtual ICollection<Meeting> Meetings { get; set; } = [];
+    public virtual ICollection<Expediture> Expeditures { get; set; } = [];
+    public virtual ICollection<Opportunity> Opportunities { get; set; } = [];
+    public virtual ICollection<Objective> Objectives { get; set; } = [];
 
     public int DaysPassed()
     {

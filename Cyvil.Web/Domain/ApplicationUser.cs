@@ -21,8 +21,15 @@ public class ApplicationUser : IdentityUser<string>
 
     public bool CanCreateCampaign { get; set; } = true;
 
+    public bool IsDeleted { get; set; } = false;
+
+    public DateTime? DeleteDate { get; set; }
+
     public virtual ICollection<ApplicationUserRole> UserRoles { get; set; } = [];
     public virtual ICollection<UserNotification> Notifications { get; set; } = [];
     public virtual ICollection<ChatUser> Chats { get; set; } = [];
     public virtual ICollection<CampaignUser> Campaigns { get; set; } = [];
+    public virtual ICollection<MeetingAttendee> Meetings { get; set; } = [];
+    public virtual ICollection<Volunteer> VolunteerWork { get; set; } = [];
+    public ICollection<CommunityMember> Communities { get; set; } = [];
 }

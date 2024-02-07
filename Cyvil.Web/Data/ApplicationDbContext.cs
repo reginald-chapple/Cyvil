@@ -20,9 +20,19 @@ namespace Cyvil.Web.Data
         public DbSet<ChatUser> ChatUsers { get; set; }
         public DbSet<ChatMessage> ChatMessages { get; set; }
         public DbSet<Cause> Causes { get; set; }
-        public DbSet<Value> Values { get; set; }
+        public DbSet<Community> Communities { get; set; }
+        public DbSet<CommunityMember> CommunityMembers { get; set; }
         public DbSet<Campaign> Campaigns { get; set; }
         public DbSet<CampaignUser> CampaignUsers { get; set; }
+        public DbSet<Donation> Donations { get; set; }
+        public DbSet<Expediture> Expeditures { get; set; }
+        public DbSet<Meeting> Meetings { get; set; }
+        public DbSet<Invite> Invites { get; set; }
+        public DbSet<MeetingAttendee> MeetingAttendees { get; set; }
+        public DbSet<Opportunity> Opportunities { get; set; }
+        public DbSet<Volunteer> Volunteers { get; set; }
+        public DbSet<Objective> Objectives { get; set; }
+        public DbSet<ActionItem> ActionItems { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -44,6 +54,9 @@ namespace Cyvil.Web.Data
             });
             builder.ApplyConfiguration(new ChatUserConfiguration());
             builder.ApplyConfiguration(new UserNotificationConfiguration());
+            builder.ApplyConfiguration(new MeetingAttendeeConfiguration());
+            builder.ApplyConfiguration(new VolunteerConfiguration());
+            builder.ApplyConfiguration(new CommunityMemberConfiguration());
         }
 
         public override int SaveChanges()

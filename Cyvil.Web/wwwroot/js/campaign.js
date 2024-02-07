@@ -15,7 +15,7 @@ function saveCampaign() {
             contentType: false,
             success: function (response) {
                 modal.hide();
-                document.getElementById("camoaign-form").reset();
+                document.getElementById("campaign-form").reset();
                 // SELECT Name, COUNT(Name), StateId, COUNT(StateId) FROM Cities GROUP BY Name, StateId HAVING COUNT(Name) > 1 AND COUNT(StateId) > 1;
                 flashToast(response.message);
                 $("#campaignData").append(`<tr>
@@ -28,8 +28,8 @@ function saveCampaign() {
             },
             error: function (request, status, error) {
                 modal.hide();
-                document.getElementById("camoaign-form").reset();
-                flashToast(request.responseText);
+                document.getElementById("campaign-form").reset();
+                // flashToast(request.responseText);
             }
 
         });

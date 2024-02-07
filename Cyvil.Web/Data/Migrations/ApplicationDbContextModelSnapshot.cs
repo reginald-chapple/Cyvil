@@ -17,6 +17,44 @@ namespace Cyvil.Web.Data.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.1");
 
+            modelBuilder.Entity("Cyvil.Web.Domain.ActionItem", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime?>("CompletionDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime?>("DeleteDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("IsCompleted")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Label")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<long>("ObjectiveId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("Updated")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ObjectiveId");
+
+                    b.ToTable("ActionItems");
+                });
+
             modelBuilder.Entity("Cyvil.Web.Domain.ApplicationRole", b =>
                 {
                     b.Property<string>("Id")
@@ -58,6 +96,9 @@ namespace Cyvil.Web.Data.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("TEXT");
 
+                    b.Property<DateTime?>("DeleteDate")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("TEXT");
@@ -73,6 +114,9 @@ namespace Cyvil.Web.Data.Migrations
                     b.Property<string>("Image")
                         .IsRequired()
                         .HasColumnType("TEXT");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("INTEGER");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("INTEGER");
@@ -154,7 +198,10 @@ namespace Cyvil.Web.Data.Migrations
                     b.Property<DateTime>("Created")
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime?>("Deadline")
+                    b.Property<DateOnly?>("Deadline")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime?>("DeleteDate")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Goal")
@@ -164,6 +211,9 @@ namespace Cyvil.Web.Data.Migrations
                     b.Property<string>("Importance")
                         .IsRequired()
                         .HasColumnType("TEXT");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("INTEGER");
 
                     b.Property<bool>("IsPublished")
                         .HasColumnType("INTEGER");
@@ -380,6 +430,248 @@ namespace Cyvil.Web.Data.Migrations
                     b.ToTable("ChatUsers");
                 });
 
+            modelBuilder.Entity("Cyvil.Web.Domain.Community", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("About")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<long>("CauseId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("IsEnabled")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<long?>("ParentId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("Updated")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CauseId");
+
+                    b.HasIndex("ParentId");
+
+                    b.ToTable("Communities");
+                });
+
+            modelBuilder.Entity("Cyvil.Web.Domain.CommunityMember", b =>
+                {
+                    b.Property<long>("CommunityId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("MemberId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Role")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("Updated")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("CommunityId", "MemberId");
+
+                    b.HasIndex("MemberId");
+
+                    b.ToTable("CommunityMembers");
+                });
+
+            modelBuilder.Entity("Cyvil.Web.Domain.Donation", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<decimal>("Amount")
+                        .HasPrecision(7, 2)
+                        .HasColumnType("TEXT");
+
+                    b.Property<long>("CampaignId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("DonorEmail")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("DonorName")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("Updated")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CampaignId");
+
+                    b.ToTable("Donations");
+                });
+
+            modelBuilder.Entity("Cyvil.Web.Domain.Expediture", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime?>("AcquisitionDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<long>("CampaignId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<decimal>("Cost")
+                        .HasPrecision(8, 2)
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("IsAcquired")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Item")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("Updated")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CampaignId");
+
+                    b.ToTable("Expeditures");
+                });
+
+            modelBuilder.Entity("Cyvil.Web.Domain.Invite", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("AttendeeEmail")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("AttendeeName")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime?>("DeleteDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Label")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<long>("MeetingId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("Updated")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MeetingId");
+
+                    b.ToTable("Invites");
+                });
+
+            modelBuilder.Entity("Cyvil.Web.Domain.Meeting", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<long>("CampaignId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateOnly>("Date")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime?>("DeleteDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<TimeOnly>("EndTime")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Location")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Slug")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<TimeOnly>("StartTime")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("Updated")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CampaignId");
+
+                    b.ToTable("Meetings");
+                });
+
+            modelBuilder.Entity("Cyvil.Web.Domain.MeetingAttendee", b =>
+                {
+                    b.Property<long>("MeetingId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("AttendeeId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("Updated")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("MeetingId", "AttendeeId");
+
+                    b.HasIndex("AttendeeId");
+
+                    b.ToTable("MeetingAttendees");
+                });
+
             modelBuilder.Entity("Cyvil.Web.Domain.Notification", b =>
                 {
                     b.Property<long>("Id")
@@ -399,6 +691,77 @@ namespace Cyvil.Web.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Notifications");
+                });
+
+            modelBuilder.Entity("Cyvil.Web.Domain.Objective", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<long>("CampaignId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime?>("CompletionDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime?>("DeleteDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("IsCompleted")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Label")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<decimal>("PercentageComplete")
+                        .HasPrecision(5, 2)
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("Updated")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CampaignId");
+
+                    b.ToTable("Objectives");
+                });
+
+            modelBuilder.Entity("Cyvil.Web.Domain.Opportunity", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<long>("CampaignId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("IsClosed")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("Updated")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CampaignId");
+
+                    b.ToTable("Opportunities");
                 });
 
             modelBuilder.Entity("Cyvil.Web.Domain.UserNotification", b =>
@@ -425,25 +788,28 @@ namespace Cyvil.Web.Data.Migrations
                     b.ToTable("UserNotifications");
                 });
 
-            modelBuilder.Entity("Cyvil.Web.Domain.Value", b =>
+            modelBuilder.Entity("Cyvil.Web.Domain.Volunteer", b =>
                 {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<long>("OpportunityId")
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("TEXT");
 
                     b.Property<DateTime>("Created")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<int>("Status")
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("Updated")
                         .HasColumnType("TEXT");
 
-                    b.HasKey("Id");
+                    b.HasKey("OpportunityId", "UserId");
 
-                    b.ToTable("Values");
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Volunteers");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -531,6 +897,17 @@ namespace Cyvil.Web.Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
+                });
+
+            modelBuilder.Entity("Cyvil.Web.Domain.ActionItem", b =>
+                {
+                    b.HasOne("Cyvil.Web.Domain.Objective", "Objective")
+                        .WithMany("ActionItems")
+                        .HasForeignKey("ObjectiveId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Objective");
                 });
 
             modelBuilder.Entity("Cyvil.Web.Domain.ApplicationUserRole", b =>
@@ -621,6 +998,127 @@ namespace Cyvil.Web.Data.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("Cyvil.Web.Domain.Community", b =>
+                {
+                    b.HasOne("Cyvil.Web.Domain.Cause", "Cause")
+                        .WithMany("Communities")
+                        .HasForeignKey("CauseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Cyvil.Web.Domain.Community", "Parent")
+                        .WithMany("Subcommunities")
+                        .HasForeignKey("ParentId");
+
+                    b.Navigation("Cause");
+
+                    b.Navigation("Parent");
+                });
+
+            modelBuilder.Entity("Cyvil.Web.Domain.CommunityMember", b =>
+                {
+                    b.HasOne("Cyvil.Web.Domain.Community", "Community")
+                        .WithMany("Members")
+                        .HasForeignKey("CommunityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Cyvil.Web.Domain.ApplicationUser", "Member")
+                        .WithMany("Communities")
+                        .HasForeignKey("MemberId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Community");
+
+                    b.Navigation("Member");
+                });
+
+            modelBuilder.Entity("Cyvil.Web.Domain.Donation", b =>
+                {
+                    b.HasOne("Cyvil.Web.Domain.Campaign", "Campaign")
+                        .WithMany("Donations")
+                        .HasForeignKey("CampaignId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Campaign");
+                });
+
+            modelBuilder.Entity("Cyvil.Web.Domain.Expediture", b =>
+                {
+                    b.HasOne("Cyvil.Web.Domain.Campaign", "Campaign")
+                        .WithMany("Expeditures")
+                        .HasForeignKey("CampaignId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Campaign");
+                });
+
+            modelBuilder.Entity("Cyvil.Web.Domain.Invite", b =>
+                {
+                    b.HasOne("Cyvil.Web.Domain.Meeting", "Meeting")
+                        .WithMany("Invites")
+                        .HasForeignKey("MeetingId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Meeting");
+                });
+
+            modelBuilder.Entity("Cyvil.Web.Domain.Meeting", b =>
+                {
+                    b.HasOne("Cyvil.Web.Domain.Campaign", "Campaign")
+                        .WithMany("Meetings")
+                        .HasForeignKey("CampaignId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Campaign");
+                });
+
+            modelBuilder.Entity("Cyvil.Web.Domain.MeetingAttendee", b =>
+                {
+                    b.HasOne("Cyvil.Web.Domain.ApplicationUser", "Attendee")
+                        .WithMany("Meetings")
+                        .HasForeignKey("AttendeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Cyvil.Web.Domain.Meeting", "Meeting")
+                        .WithMany("Attendees")
+                        .HasForeignKey("MeetingId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Attendee");
+
+                    b.Navigation("Meeting");
+                });
+
+            modelBuilder.Entity("Cyvil.Web.Domain.Objective", b =>
+                {
+                    b.HasOne("Cyvil.Web.Domain.Campaign", "Campaign")
+                        .WithMany("Objectives")
+                        .HasForeignKey("CampaignId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Campaign");
+                });
+
+            modelBuilder.Entity("Cyvil.Web.Domain.Opportunity", b =>
+                {
+                    b.HasOne("Cyvil.Web.Domain.Campaign", "Campaign")
+                        .WithMany("Opportunities")
+                        .HasForeignKey("CampaignId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Campaign");
+                });
+
             modelBuilder.Entity("Cyvil.Web.Domain.UserNotification", b =>
                 {
                     b.HasOne("Cyvil.Web.Domain.Notification", "Notification")
@@ -636,6 +1134,25 @@ namespace Cyvil.Web.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("Notification");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Cyvil.Web.Domain.Volunteer", b =>
+                {
+                    b.HasOne("Cyvil.Web.Domain.Opportunity", "Opportunity")
+                        .WithMany("Volunteers")
+                        .HasForeignKey("OpportunityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Cyvil.Web.Domain.ApplicationUser", "User")
+                        .WithMany("VolunteerWork")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Opportunity");
 
                     b.Navigation("User");
                 });
@@ -687,13 +1204,29 @@ namespace Cyvil.Web.Data.Migrations
 
                     b.Navigation("Chats");
 
+                    b.Navigation("Communities");
+
+                    b.Navigation("Meetings");
+
                     b.Navigation("Notifications");
 
                     b.Navigation("UserRoles");
+
+                    b.Navigation("VolunteerWork");
                 });
 
             modelBuilder.Entity("Cyvil.Web.Domain.Campaign", b =>
                 {
+                    b.Navigation("Donations");
+
+                    b.Navigation("Expeditures");
+
+                    b.Navigation("Meetings");
+
+                    b.Navigation("Objectives");
+
+                    b.Navigation("Opportunities");
+
                     b.Navigation("Users");
                 });
 
@@ -702,6 +1235,8 @@ namespace Cyvil.Web.Data.Migrations
                     b.Navigation("Campaigns");
 
                     b.Navigation("Children");
+
+                    b.Navigation("Communities");
                 });
 
             modelBuilder.Entity("Cyvil.Web.Domain.Chat", b =>
@@ -711,9 +1246,33 @@ namespace Cyvil.Web.Data.Migrations
                     b.Navigation("Users");
                 });
 
+            modelBuilder.Entity("Cyvil.Web.Domain.Community", b =>
+                {
+                    b.Navigation("Members");
+
+                    b.Navigation("Subcommunities");
+                });
+
+            modelBuilder.Entity("Cyvil.Web.Domain.Meeting", b =>
+                {
+                    b.Navigation("Attendees");
+
+                    b.Navigation("Invites");
+                });
+
             modelBuilder.Entity("Cyvil.Web.Domain.Notification", b =>
                 {
                     b.Navigation("Users");
+                });
+
+            modelBuilder.Entity("Cyvil.Web.Domain.Objective", b =>
+                {
+                    b.Navigation("ActionItems");
+                });
+
+            modelBuilder.Entity("Cyvil.Web.Domain.Opportunity", b =>
+                {
+                    b.Navigation("Volunteers");
                 });
 #pragma warning restore 612, 618
         }
